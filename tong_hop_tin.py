@@ -37,10 +37,10 @@ FEEDS = [
     ("VnExpress", "Giải trí",  "https://vnexpress.net/rss/giai-tri.rss"),
 
     ("Dân Trí",   "Mới nhất",  "https://dantri.com.vn/rss/home.rss"),
-    ("Dân Trí",   "Thời sự",   "https://dantri.com.vn/rss/xa-hoi.rss"),
+    ("Dân Trí",   "Thời sự",   "https://dantri.com.vn/rss/thoi-su.rss"),
     ("Dân Trí",   "Thế giới",  "https://dantri.com.vn/rss/the-gioi.rss"),
     ("Dân Trí",   "Kinh doanh","https://dantri.com.vn/rss/kinh-doanh.rss"),
-    ("Dân Trí",   "Công nghệ", "https://dantri.com.vn/rss/suc-manh-so.rss"),
+    ("Dân Trí",   "Công nghệ", "https://dantri.com.vn/rss/cong-nghe.rss"),
     ("Dân Trí",   "Thể thao",  "https://dantri.com.vn/rss/the-thao.rss"),
     ("Dân Trí",   "Giải trí",  "https://dantri.com.vn/rss/giai-tri.rss"),
 ]
@@ -248,7 +248,7 @@ function render() {
 
   main.innerHTML = list.map(n => `
     <article>
-      ${n.image ? `<a href="${esc(n.link)}" target="_blank" rel="noopener"><img loading="lazy" src="${esc(n.image)}" alt=""></a>` : ""}
+      ${n.image ? `<a href="${esc(n.link)}" target="_blank" rel="noopener"><img loading="lazy" referrerpolicy="no-referrer" src="${esc(n.image)}" alt="" onerror="this.closest('a').remove()"></a>` : ""}
       <div class="body">
         <div class="meta">${esc(n.category)} · ${fmt(n.ts)}</div>
         <h2><a href="${esc(n.link)}" target="_blank" rel="noopener">${esc(n.title)}</a></h2>
