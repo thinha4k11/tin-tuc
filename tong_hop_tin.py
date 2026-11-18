@@ -144,7 +144,6 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Tin tổng hợp">
 <meta name="theme-color" content="#f6f5f2">
 <title>Tin tổng hợp</title>
@@ -183,9 +182,10 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   h2 a { color:inherit; text-decoration:none; }
   h2 a:hover { text-decoration:underline; }
   p { margin:0 0 12px; color:var(--muted); font-size:14px; }
-  .source { border-top:1px solid var(--line); padding:8px 14px; font-size:13px; color:var(--muted); }
-  .source b.vne { color:var(--vne); } .source b.dt { color:var(--dt); }
-  .source a { color:var(--muted); word-break:break-all; }
+  a.source { display:block; border-top:1px solid var(--line); padding:7px 14px; font-size:12px;
+             color:var(--muted); opacity:.6; text-decoration:none;
+             white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  a.source:hover { opacity:1; text-decoration:underline; }
   .empty { grid-column:1/-1; text-align:center; color:var(--muted); padding:40px; }
   .err { max-width:1200px; margin:10px auto 0; color:#b4441b; font-size:13px; }
 </style>
@@ -254,10 +254,7 @@ function render() {
         <h2><a href="${esc(n.link)}" target="_blank" rel="noopener">${esc(n.title)}</a></h2>
         ${n.summary ? `<p>${esc(n.summary)}</p>` : ""}
       </div>
-      <div class="source">
-        Nguồn: <b class="${n.source === "VnExpress" ? "vne" : "dt"}">${esc(n.source)}</b> —
-        <a href="${esc(n.link)}" target="_blank" rel="noopener">${esc(n.link)}</a>
-      </div>
+      <a class="source" href="${esc(n.link)}" target="_blank" rel="noopener" title="${esc(n.link)}">Nguồn: ${esc(n.source)} — ${esc(n.link.replace(/^https?:\/\//, ""))}</a>
     </article>`).join("");
 }
 
